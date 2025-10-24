@@ -1,0 +1,29 @@
+# 2048. Next Greater Numerically Balanced Number
+class Solution {
+    public int nextBeautifulNumber(int n) {
+        int x = n + 1;
+        while (true) {
+            if (isBalance(x)) {
+                return x;
+            }
+            x++;
+        }
+    }
+
+    private boolean isBalance(int x) {
+        String s = Integer.toString(x);
+        int[] count = new int[10];
+        for (char c : s.toCharArray()) {
+            int d = c - '0';
+            count[d]++;
+        }
+
+        for (char c : s.toCharArray()) {
+            int d = c - '0';
+            if (count[d] != d) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
